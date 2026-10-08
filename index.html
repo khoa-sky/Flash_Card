@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Học Tiếng Anh · Flashcard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header / Navigation -->
+    <header class="navbar">
+      <div class="nav-container">
+        <div class="brand">Web Học Tiếng Anh</div>
+        <nav class="nav-links">
+          <a href="#" class="nav-link">Trang chủ</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-container">
+        <!-- Introduction Header -->
+        <section class="intro-section">
+          <h1 class="page-title">Flashcard tiếng Anh</h1>
+          <p class="page-desc">
+            Nhập từ tiếng Anh và nghĩa tiếng Việt để tạo Flashcard.
+          </p>
+        </section>
+
+        <!-- Form tạo Flashcard -->
+        <section class="form-section">
+          <form id="createCardForm" class="card-form" novalidate>
+            <div class="form-fields">
+              <div class="input-group" id="groupWord">
+                <label for="englishWord" class="input-label"
+                  >Từ tiếng Anh</label
+                >
+                <input
+                  type="text"
+                  id="englishWord"
+                  name="word"
+                  class="text-input"
+                  placeholder="Ví dụ: beautiful"
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="input-group" id="groupMeaning">
+                <label for="vietnameseMeaning" class="input-label"
+                  >Nghĩa tiếng Việt</label
+                >
+                <input
+                  type="text"
+                  id="vietnameseMeaning"
+                  name="meaning"
+                  class="text-input"
+                  placeholder="Ví dụ: xinh đẹp"
+                  autocomplete="off"
+                />
+              </div>
+
+              <button type="submit" class="btn-primary" id="btnSubmit">
+                + Tạo Flashcard
+              </button>
+            </div>
+
+            <p class="validation-message" id="validationMessage">
+              Vui lòng nhập từ tiếng Anh và nghĩa tiếng Việt.
+            </p>
+          </form>
+        </section>
+
+        <!-- Danh sách Flashcard -->
+        <section class="collection-section">
+          <div class="collection-header">
+            <h2 class="section-title">Flashcard của bạn</h2>
+            <button
+              type="button"
+              class="btn-text-secondary"
+              id="btnResetDefault"
+              title="Khôi phục danh sách mẫu"
+            >
+              Khôi phục dữ liệu mẫu
+            </button>
+          </div>
+
+          <!-- Trạng thái rỗng (Empty State) -->
+          <div class="empty-state" id="emptyState">
+            <p class="empty-title">Bạn chưa có Flashcard nào.</p>
+            <p class="empty-desc">Nhập một từ ở phía trên để bắt đầu.</p>
+          </div>
+
+          <!-- Lưới thẻ Flashcard -->
+          <div class="card-grid" id="cardGrid">
+            <!-- Các thẻ sẽ được render động từ JavaScript -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

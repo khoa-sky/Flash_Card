@@ -1,0 +1,521 @@
+/* ==========================================================================
+   Web Học Tiếng Anh - Tái thiết kế UI/UX Hiện đại, Mềm mại
+   ========================================================================== */
+
+/* 1. DESIGN TOKENS (CSS VARIABLES) */
+:root {
+  --color-bg: #F6F7FB;
+  --color-card-bg: #FFFFFF;
+  
+  --color-primary: #7C8DF0;
+  --color-primary-hover: #6B7FD7;
+  --color-primary-soft: #EEF1FF;
+  
+  --color-text-main: #1E293B;
+  --color-text-sub: #64748B;
+  
+  --color-border: #E5E9F2;
+  --color-border-card: #EEF1F7;
+  
+  --color-error-border: #FDA4AF;
+  --color-error-bg: #FFF1F2;
+  --color-error-text: #E11D48;
+
+  --radius-input: 12px;
+  --radius-card: 20px;
+
+  --shadow-soft: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.06);
+  --shadow-hover: 0 4px 12px rgba(15,23,42,0.04), 0 12px 32px rgba(15,23,42,0.1);
+  --shadow-focus: 0 0 0 4px rgba(124, 141, 240, 0.2);
+  --shadow-error-focus: 0 0 0 4px rgba(253, 164, 175, 0.3);
+
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 2. BASE & RESET */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  /* Subtle gradient overlay for extra depth */
+  background-image: linear-gradient(180deg, #F8FAFC 0%, var(--color-bg) 100%);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+}
+
+/* Scrollbar mượt mà */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* 3. LAYOUT & CONTAINER */
+.main-content {
+  width: 100%;
+}
+.content-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 24px 64px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Rộng rãi hơn */
+}
+
+/* 4. HEADER */
+.navbar {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+.nav-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  height: 72px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-sub);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+.nav-link:hover, .nav-link:active {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+}
+
+/* 5. TYPOGRAPHY (Tiêu đề & Mô tả) */
+.intro-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.page-title {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+}
+.page-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-sub);
+}
+
+/* 6. FORM & INPUTS */
+.card-form {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 20px; /* Bo góc to hơn */
+  box-shadow: var(--shadow-soft);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form-fields {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 20px;
+  width: 100%;
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.input-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+.text-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--color-text-main);
+  outline: none;
+  transition: all 0.2s ease;
+}
+.text-input::placeholder {
+  color: #94A3B8;
+}
+.text-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+
+/* Trạng thái lỗi Form */
+.input-group.has-error .text-input {
+  border-color: var(--color-error-border);
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+}
+.input-group.has-error .text-input:focus {
+  border-color: var(--color-error-border);
+  box-shadow: var(--shadow-error-focus);
+}
+.validation-message {
+  display: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-error-text);
+  margin-top: -4px;
+}
+.card-form.is-invalid .validation-message {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Nút Submit */
+.btn-primary {
+  height: 48px;
+  width: 200px;
+  padding: 0 20px;
+  background-color: var(--color-primary);
+  /* Gradient nhẹ cho nút */
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-input);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(124, 141, 240, 0.4);
+  transition: all 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(107, 127, 215, 0.5);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 7. CARD COLLECTION */
+.collection-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.collection-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-text-main);
+}
+.btn-text-secondary {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-sub);
+  cursor: pointer;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+.btn-text-secondary:hover {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+}
+
+/* Empty State */
+.empty-state {
+  display: none;
+  width: 100%;
+  min-height: 200px;
+  padding: 32px;
+  background-color: var(--color-card-bg);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-card);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+.empty-state.is-visible {
+  display: flex;
+  animation: fadeIn 0.4s ease;
+}
+.empty-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+.empty-desc {
+  font-size: 14px;
+  color: var(--color-text-sub);
+}
+
+/* 8. FLASHCARD GRID & 3D FLIP */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.flip-card {
+  perspective: 1000px;
+  height: 170px;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+.flip-card:hover {
+  transform: translateY(-4px);
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Mặt trước và sau */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  user-select: none;
+  overflow: hidden; /* Cắt phần pseudo-element tràn */
+}
+
+/* Dải màu nhấn ở trên cùng thẻ */
+.flip-card-front::before,
+.flip-card-back::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--color-primary);
+  opacity: 0.6;
+}
+
+.flip-card:hover .flip-card-front,
+.flip-card:hover .flip-card-back {
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(124, 141, 240, 0.2);
+}
+
+/* Mặt trước (Từ tiếng Anh) */
+.card-word {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--color-text-main);
+  word-break: break-word;
+}
+
+/* Mặt sau (Nghĩa tiếng Việt - thiết kế đặc biệt) */
+.flip-card-back {
+  transform: rotateY(180deg);
+  background-color: var(--color-primary-soft);
+  border-color: var(--color-primary-soft);
+}
+.flip-card-back::before {
+  background: var(--color-primary-hover);
+  opacity: 1;
+}
+.card-meaning {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--color-primary-hover);
+  word-break: break-word;
+}
+
+/* Chữ Hint */
+.card-hint {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-sub);
+  letter-spacing: 0.01em;
+  opacity: 0.8;
+}
+.flip-card-back .card-hint {
+  color: var(--color-primary);
+}
+
+/* Nút xóa thẻ */
+.btn-delete-card {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--color-text-sub);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+.flip-card:hover .btn-delete-card {
+  opacity: 0.5;
+}
+.btn-delete-card:hover {
+  opacity: 1 !important;
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+}
+
+/* 9. ANIMATIONS & RESPONSIVE */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .nav-container {
+    padding: 0 16px;
+  }
+  .content-container {
+    padding: 24px 16px 48px 16px;
+    gap: 32px;
+  }
+  .page-title {
+    font-size: 28px;
+  }
+  .card-form {
+    padding: 20px;
+  }
+  .form-fields {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-primary {
+    width: 100%;
+  }
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+  .flip-card {
+    height: 160px;
+  }
+  .btn-delete-card {
+    opacity: 0.6; /* Luôn hiện mờ trên mobile để dễ tap */
+  }
+}
+
+/* Tắt animation nếu user yêu cầu (Prefers Reduced Motion) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+}
